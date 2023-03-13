@@ -40,6 +40,4 @@ int main(int argc, char* argv[])
 	std::string line;
 	std::getline(f, line, ';');
 	std::cout << line;
-
-	quit();
 }
