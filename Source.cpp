@@ -6,6 +6,8 @@
 #include <sstream>
 #include <conio.h>
 
+#define DEBUG
+
 //TODO: Find way to get Windows / POSIX in #DEFINE statement
 
 extern const char* operators[] = { "()", "==", "=", "+", "-", "*", "/", "||", "&&", };
@@ -25,8 +27,21 @@ void quit()
 
 int main(int argc, char* argv[])
 {
+	std::string filename;
+	if (argc == 2)
+	{
+		filename = argv[1];
+	}
+	if (argc > 2)
+	{
+		std::cout << "ERROR: TOO MANY ARGUMENTS\n";
+		quit();
+	}
+#ifdef DEBUG
+	filename = "test.cbr";
+#endif
 	std::ifstream file{};
-	file.open("test.cbr", std::ios_base::in);
+	file.open(filename, std::ios_base::in);
 
 	std::string in;
 	
