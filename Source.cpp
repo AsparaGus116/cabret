@@ -20,7 +20,7 @@ void quit()
 {
 	std::cout << "Press any key to exit...";
 	while(!_kbhit() ){} // Windows only, find POSIX solution
-	std::exit(-1);
+	std::exit(0);
 }
 
 int main(int argc, char* argv[])
