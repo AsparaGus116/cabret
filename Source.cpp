@@ -47,8 +47,7 @@ int main(int argc, char* argv[])
 	{
 		std::string line;
 		std::getline(f, line, ';');
-		if (line[0] <= 0) { break; } // check for null terminator or -1
+		if (line[0] <= 0) { quit(); } // check for null terminator or -1 (EOF signal)
 		std::cout << line << '\n';
 	}
-	quit();
 }
