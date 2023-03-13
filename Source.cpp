@@ -43,8 +43,12 @@ int main(int argc, char* argv[])
 	file.close();
 	removeWhitespace(in);
 	std::stringstream f{ in };
-
-	std::string line;
-	std::getline(f, line, ';');
-	std::cout << line;
+	while (!f.eof())
+	{
+		std::string line;
+		std::getline(f, line, ';');
+		if (line[0] <= 0) { break; } // check for null terminator or -1
+		std::cout << line << '\n';
+	}
+	quit();
 }
