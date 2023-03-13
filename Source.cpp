@@ -20,23 +20,35 @@ void removeWhitespace(std::string& input)
 
 void quit()
 {
+#ifdef DEBUG
 	std::cout << "Press any key to exit...";
 	while(!_kbhit() ){} // Windows only, find POSIX solution
+#endif
+
 	std::exit(0);
 }
 
 int main(int argc, char* argv[])
 {
 	std::string filename;
+
 	if (argc == 2)
 	{
 		filename = argv[1];
 	}
-	if (argc > 2)
+	else if (argc > 2)
 	{
 		std::cout << "ERROR: TOO MANY ARGUMENTS\n";
 		quit();
 	}
+#ifndef DEBUG
+	else if (argc < 2)
+	{
+		std::cout << "ERROR: FILE NAME EXPECTED\n";
+		quit();
+	}
+#endif
+
 #ifdef DEBUG
 	filename = "test.cbr";
 #endif
