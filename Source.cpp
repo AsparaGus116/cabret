@@ -28,7 +28,13 @@ int main(int argc, char* argv[])
 	file.open("test.cbr", std::ios_base::in);
 
 	std::string in;
-	assert(file.good());
+	
+	if (!file.good())
+	{
+		std::cout << "ERROR: BAD FILE INPUT\n";
+		quit();
+	}
+
 	while (!file.eof())
 	{
 		in.push_back(file.get());
