@@ -13,22 +13,6 @@
 
 extern const char* operators[] = { "()", "==", "=", "+", "-", "*", "/", "||", "&&", };
 
-void removeWhitespace(std::string& input)
-{
-	std::regex whitespace("[\\s]*");
-	input = std::regex_replace(input, whitespace, "");
-}
-
-void quit()
-{
-#ifdef DEBUG
-	std::cout << "Press any key to exit...";
-	while(!_kbhit() ){} // Windows only, find POSIX solution
-#endif
-
-	std::exit(0);
-}
-
 int main(int argc, char* argv[])
 {
 	std::string filename;
@@ -40,7 +24,7 @@ int main(int argc, char* argv[])
 	else if (argc > 2)
 	{
 		std::cout << "ERROR: TOO MANY ARGUMENTS\n";
-		quit();
+		utils::quit();
 	}
 #ifndef DEBUG
 	else if (argc < 2)
@@ -61,7 +45,7 @@ int main(int argc, char* argv[])
 	if (!file.good())
 	{
 		std::cout << "ERROR: BAD FILE INPUT\n";
-		quit();
+		utils::quit();
 	}
 
 	while (!file.eof())
@@ -69,13 +53,13 @@ int main(int argc, char* argv[])
 		in.push_back(file.get());
 	}
 	file.close();
-	removeWhitespace(in);
+	utils::removeWhitespace(in);
 	std::stringstream f{ in };
 	while (!f.eof())
 	{
 		std::string line;
 		std::getline(f, line, ';');
-		if (line[0] <= 0) { quit(); } // check for null terminator or -1 (EOF signal)
+		if (line[0] <= 0) { utils::quit(); } // check for null terminator or -1 (EOF signal)
 		std::cout << line << '\n';
 	}
 }
