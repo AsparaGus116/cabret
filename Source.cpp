@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
 	else if (argc < 2)
 	{
 		std::cout << "ERROR: FILE NAME EXPECTED\n";
-		quit();
+		utils::quit();
 	}
 #endif
 

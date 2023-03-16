@@ -1,5 +1,10 @@
 #include "Utils.h"
 
+#include <iostream>
+#include <conio.h>
+
+#define DEBUG
+
 void utils::removeWhitespace(std::string& input)
 {
 	std::regex whitespace("[\\s]*");
