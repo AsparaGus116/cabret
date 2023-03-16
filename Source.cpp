@@ -62,4 +62,5 @@ int main(int argc, char* argv[])
 		if (line[0] <= 0) { utils::quit(); } // check for null terminator or -1 (EOF signal)
 		std::cout << line << '\n';
 	}
+	utils::quit();
 }
