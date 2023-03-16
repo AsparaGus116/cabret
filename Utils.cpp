@@ -5,7 +5,7 @@
 
 #define DEBUG
 
-void utils::removeWhitespace(std::string& input)
+void utils::preProcess(std::string& input)
 {
 	std::regex whitespace("[\\s]*");
 	std::regex comments("(\\/\\/)(.)+\\n");

@@ -53,7 +53,7 @@ int main(int argc, char* argv[])
 		in.push_back(file.get());
 	}
 	file.close();
-	utils::removeWhitespace(in);
+	utils::preProcess(in);
 	std::stringstream f{ in };
 	while (!f.eof())
 	{

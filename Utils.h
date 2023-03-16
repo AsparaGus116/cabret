@@ -5,7 +5,7 @@
 
 namespace utils
 {
-	void removeWhitespace(std::string& input);
+	void preProcess(std::string& input);
 
 	void quit();
 	
