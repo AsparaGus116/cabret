@@ -1,4 +1,4 @@
-#DEFINE test
+//#DEFINE test
 x = 3;
 	y = 4; // comment here
 x           = 4;

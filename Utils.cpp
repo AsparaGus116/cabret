@@ -10,8 +10,9 @@ void utils::preProcess(std::string& input)
 	std::regex define("#DEFINE\\s+(\\w+)\n");
 	std::regex whitespace("[\\s]*");
 	std::regex comments("(\\/\\/)(.)+\\n");
-	input = std::regex_replace(input, define, "#$1;");
+
 	input = std::regex_replace(input, comments, "\n");
+	input = std::regex_replace(input, define, "#$1;");
 	input = std::regex_replace(input, whitespace, "");
 	
 }
