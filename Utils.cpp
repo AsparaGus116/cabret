@@ -1,11 +1,15 @@
 #include "Utils.h"
 
 #include <iostream>
+#include <string>
 #include <conio.h>
 
 #define DEBUG
 
 std::regex_constants::syntax_option_type icase{ std::regex_constants::syntax_option_type::icase };
+
+const std::string def_delim{ "|" };
+const std::string undef_delim{ "%" };
 
 void utils::preProcess(std::string& input)
 {
@@ -15,10 +19,10 @@ void utils::preProcess(std::string& input)
 	std::regex comments("(\\/\\/)(.)+\\n");
 
 	input = std::regex_replace(input, comments, "\n");
-	input = std::regex_replace(input, define, "#$1;"); 
+	input = std::regex_replace(input, define, def_delim + "$1;"); 
 	// TODO: Change define and undefine characters (extended char set?), maybe set up an enum
 	// TODO: Create separate preprocessor class
-	input = std::regex_replace(input, undef, "^$1;");
+	input = std::regex_replace(input, undef, undef_delim + "$1;");
 	input = std::regex_replace(input, whitespace, "");
 	
 }
