@@ -6,6 +6,7 @@
 #include <conio.h>
 
 #include "Utils.h"
+#include "Preprocessor.h"
 
 #define DEBUG
 
@@ -37,6 +38,7 @@ int main(int argc, char* argv[])
 #ifdef DEBUG
 	filename = "test.cbr";
 #endif
+
 	std::ifstream file{};
 	file.open(filename, std::ios_base::in);
 
@@ -53,7 +55,8 @@ int main(int argc, char* argv[])
 		in.push_back(file.get());
 	}
 	file.close();
-	utils::preProcess(in);
+	Preprocessor p;
+	p.preprocess(in);
 	std::stringstream f{ in };
 	while (!f.eof())
 	{

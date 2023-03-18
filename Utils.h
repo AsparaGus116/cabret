@@ -5,7 +5,6 @@
 
 namespace utils
 {
-	void preProcess(std::string& input);
 
 	void quit();
 	
