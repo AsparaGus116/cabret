@@ -1,5 +1,5 @@
-#DEFINE test
-x = 3;
+#define test
+/*x = 3;
 	y = 4; // comment here
-x           = 4;
+x */          = 4;
 #undef test
