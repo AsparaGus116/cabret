@@ -1,3 +1,11 @@
+#include "utils.h"
+
+int utils::getBits(uint8_t x, int l, int h)
+{
+    x &= ((int)std::pow(2, h) - 1); // bit mask all bits higher than h-th bit
+    x >>= l; // shift out bits lower than l-th bit
+    return x;
+}
 std::string utils::toHex(uint8_t x)
 {
     std::string res = "0x";
