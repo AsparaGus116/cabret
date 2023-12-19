@@ -9,6 +9,7 @@ int utils::getBits(uint8_t x, int l, int h)
 
 void utils::memoryDump(uint8_t pc, std::array<uint8_t, 4> R, std::array<uint8_t, 256> M)
 {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); // How about a little color?
 
     std::cout << "Registers: \n|| ";
     for (int i = 0; i < 4; i++)
@@ -30,7 +31,21 @@ void utils::memoryDump(uint8_t pc, std::array<uint8_t, 4> R, std::array<uint8_t,
         std::cout << utils::toHexShort(i * 16) << " | ";
         for (int j = 0; j < 16; j++)
         {
+            if (j + (16 * i) == pc)
+            {
+                SetConsoleTextAttribute(hConsole, 0x1F);
+            }
+            if (j + (16 * i) - 1 == pc && utils::getBits(M[pc], 4, 7) == 6)
+            {
+                SetConsoleTextAttribute(hConsole, 0x4F);
+            }
+            if ((j + (16 * i) - 1 == pc && utils::getBits(M[pc], 4, 7) != 6) ||
+                (j + (16 * i) - 2 == pc && utils::getBits(M[pc], 4, 7) == 6))
+            {
+                SetConsoleTextAttribute(hConsole, 0xdF);
+            }
             std::cout << utils::toHexShort(M[j + (16 * i)]);
+            SetConsoleTextAttribute(hConsole, 0x0F);
             std::cout << ' ';
         }
         std::cout << '\n';
