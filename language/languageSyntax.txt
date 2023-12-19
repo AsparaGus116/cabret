@@ -1,0 +1,30 @@
+Opcode 0:
+r0 = r1
+
+Opcode 1:
+r0 += r1
+
+Opcode 2:
+r0 &= r1
+
+Opcode 3:
+r0 = &r1
+
+Opcode 4:
+&r0 = r1
+
+Opcode 5:
+0)	r0 = ~r0
+1)	r0 = -r0	
+2)	r0 = !r0
+3)	r0 = pc
+
+Opcode 6:
+0)	r0 = 20
+1)	r1 += 20
+2)	r2 &= 30
+3)	r3 = &40
+
+Opcode 7:
+jle label
+label:
