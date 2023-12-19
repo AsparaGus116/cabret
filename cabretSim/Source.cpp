@@ -1,6 +1,7 @@
 #include <array>
 #include <iostream>
 #include <fstream>
+#include "utils.h"
 std::array<uint8_t, 4> R; // Registers
 std::array<uint8_t, 256> M; // Memory array
 
