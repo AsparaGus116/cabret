@@ -6,6 +6,38 @@ int utils::getBits(uint8_t x, int l, int h)
     x >>= l; // shift out bits lower than l-th bit
     return x;
 }
+
+void utils::memoryDump(uint8_t pc, std::array<uint8_t, 4> R, std::array<uint8_t, 256> M)
+{
+
+    std::cout << "Registers: \n|| ";
+    for (int i = 0; i < 4; i++)
+    {
+        std::cout << "r" << i << ": " << utils::toHex(R[i]) << " || ";
+    }
+    std::cout << '\n';
+
+    std::cout << "Memory: \n     ";
+    for (int i = 0; i < 16; i++)
+    {
+        std::cout << utils::toHexShort(i) << " ";
+    }
+
+    std::cout << "\n   +------------------------------------------------\n";
+
+    for (int i = 0; i < 16; i++)
+    {
+        std::cout << utils::toHexShort(i * 16) << " | ";
+        for (int j = 0; j < 16; j++)
+        {
+            std::cout << utils::toHexShort(M[j + (16 * i)]);
+            std::cout << ' ';
+        }
+        std::cout << '\n';
+    }
+    std::cout << "\n\n\n\n\n";
+}
+
 std::string utils::toHex(uint8_t x)
 {
     std::string res = "0x";

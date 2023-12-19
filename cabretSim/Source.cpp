@@ -1,16 +1,20 @@
 #include <array>
 #include <iostream>
 #include <fstream>
+
 #include "utils.h"
+
 std::array<uint8_t, 4> R; // Registers
 std::array<uint8_t, 256> M; // Memory array
 
 int pc; // Program counter
+
 int main(int argc, char* argv[])
 {
 	std::ifstream file;
 
 	pc = 0;
+
 	if (argc >= 2) // File input
 	{
 		file.open(argv[1], std::ios::in);
@@ -39,6 +43,7 @@ int main(int argc, char* argv[])
 	}
 	
 	pc = 0;
+
 	while (1)
 	{
 		std::cout << "How many steps would you like to go? (-1 to run until halt) \n>> ";
@@ -137,6 +142,7 @@ int main(int argc, char* argv[])
 				}
 				break;
 			}
+			utils::memoryDump(pc, R, M);
 		}
 	}
 	
