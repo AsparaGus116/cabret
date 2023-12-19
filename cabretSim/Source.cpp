@@ -8,6 +8,8 @@ int pc; // Program counter
 int main(int argc, char* argv[])
 {
 	std::ifstream file;
+
+	pc = 0;
 	if (argc >= 2) // File input
 	{
 		file.open(argv[1], std::ios::in);
@@ -25,5 +27,16 @@ int main(int argc, char* argv[])
 		std::cout << "ERR: Invalid file\n";
 		return -1;
 	}
+
+
+	while (!file.eof())
+	{
+		std::string in;
+		file >> in;
+		M[pc] = utils::fromHex(in);
+		++pc;
+	}
+	
+	pc = 0;
 	
 }
