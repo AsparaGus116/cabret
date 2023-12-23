@@ -1,8 +1,10 @@
 #include <array>
 #include <iostream>
 #include <fstream>
-
+#include <filesystem>
 #include "utils.h"
+
+namespace fs = std::filesystem;
 
 std::array<uint8_t, 4> R; // Registers
 std::array<uint8_t, 256> M; // Memory array
@@ -14,6 +16,8 @@ int main(int argc, char* argv[])
 	std::ifstream file;
 
 	pc = 0;
+
+	fs::path filePath = argv[1];
 
 	if (argc >= 2) // File input
 	{
@@ -33,14 +37,32 @@ int main(int argc, char* argv[])
 		return -1;
 	}
 
-
-	while (!file.eof())
+	if (filePath.extension() == ".txt")
 	{
-		std::string in;
-		file >> in;
-		M[pc] = utils::fromHex(in);
-		++pc;
+		while (!file.eof())
+		{
+			std::string in;
+			file >> in;
+			M[pc] = utils::fromHex(in);
+			++pc;
+		}
 	}
+	else if (filePath.extension() == ".hex")
+	{
+		while (!file.eof())
+		{
+			std::string in;
+			file >> in;
+			M[pc] = utils::fromHex(in.substr(in.size() - 4, 2));
+			++pc;
+		}
+	}
+	else
+	{
+		std::cout << "ERR: Invalid file type";
+		return -1;
+	}
+	
 	
 	pc = 0;
 
